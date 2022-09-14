@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     
     @IBOutlet var resultLabel: UILabel!
     
+
+    
+    
     @IBAction func numOneButton(_ sender: UIButton) {
         if resultLabel.text != "0" && ViewController.opStatus == false{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
@@ -53,16 +56,13 @@ class ViewController: UIViewController {
                 if floor(ViewController.finalValue) == ViewController.finalValue{
                     resultLabel.text = String(format: "%.0f", ViewController.finalValue)
                 } else {
-                    // code below will circle result to 10 decimals, current option in use is to rotete the screen if there are more than 10 decimals
-                    // resultLabel.text = String(format: "%.10f", ViewController.finalValue)
+                    // resultLabel.text = String(format: "%.10f", ViewController.finalValue) 10 decimals no screen rotation
                     resultLabel.text = String(ViewController.finalValue)
                     let n = Decimal(string: resultLabel.text!)
                     var numOfDec = 10
-                    
                     if let nUnwrapped = n {
                         numOfDec = nUnwrapped.significantFractionalDecimalDigits
                     }
-                    
                     if numOfDec >= 10{
                         var value  = UIInterfaceOrientation.landscapeRight.rawValue
                         if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight{
@@ -97,8 +97,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func percentageButton(_ sender: UIButton) {
-        print("Percentage to be developed")
+        if let numValue = resultLabel.text{
+            if let toDouble = Double(numValue){
+                ViewController.finalValue = toDouble / 100
+            }
+            resultLabel.text? = String(ViewController.finalValue)
+        }
+
     }
+    
+   
 
     
     
