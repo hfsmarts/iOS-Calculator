@@ -54,21 +54,8 @@ class ViewController: UIViewController {
                 if floor(ViewController.finalValue) == ViewController.finalValue{
                     resultLabel.text = String(format: "%.0f", ViewController.finalValue)
                 } else {
-                    // resultLabel.text = String(format: "%.10f", ViewController.finalValue) 10 decimals no screen rotation
-                    resultLabel.text = String(ViewController.finalValue)
-                    let n = Decimal(string: resultLabel.text!)
-                    var numOfDec = 10
-                    if let nUnwrapped = n {
-                        numOfDec = nUnwrapped.significantFractionalDecimalDigits
-                    }
-                    if numOfDec >= 10{
-                        var value  = UIInterfaceOrientation.landscapeRight.rawValue
-                        if UIApplication.shared.statusBarOrientation == .landscapeLeft || UIApplication.shared.statusBarOrientation == .landscapeRight{
-                            value = UIInterfaceOrientation.portrait.rawValue
-                        }
-                        UIDevice.current.setValue(value, forKey: "orientation")
-                        UIViewController.attemptRotationToDeviceOrientation()
-                    }
+                     resultLabel.text = String(format: "%.9f", ViewController.finalValue)
+                  
                 }
                 ViewController.opStatus = true
             }
