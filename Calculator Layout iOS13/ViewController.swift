@@ -37,13 +37,48 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
-        if let numValue = resultLabel.text{
-            ViewController.firstValue = Double(numValue)!
-            resultLabel.text = numValue
-            ViewController.operationHandler = (sender.titleLabel?.text)!
-            ViewController.opStatus = true
-            ViewController.equalDeduplicator = true
+        
+        if ViewController.equalDeduplicator == true{
+            if let numValue = resultLabel.text{
+                ViewController.firstValue = Double(numValue)!
+                ViewController.operationHandler = (sender.titleLabel?.text)!
+                
+                print(ViewController.firstValue)
+                print(Double(numValue)!)
+                
+                print(type(of: ViewController.firstValue))
+                print(type(of: (Double(numValue)!)))
+
+                
+            //    if ViewController.firstValue != Double(numValue)!{
+                    let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(ViewController.finalValue)")
+                    print(expression)
+                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                    if floor(ViewController.finalValue) == ViewController.finalValue{
+                        resultLabel.text = String(format: "%.0f", ViewController.finalValue)
+                    } else {
+                         resultLabel.text = String(format: "%.9f", ViewController.finalValue)
+                        }
+                    
+              //  }
+                
+                
+       
+                
+                
+                
+                
+                ViewController.opStatus = true
+
+            }
+            ViewController.equalDeduplicator = false
+
         }
+        
+        
+        
+        
+        
     }
     
     @IBAction func equalButton(_ sender: UIButton) {

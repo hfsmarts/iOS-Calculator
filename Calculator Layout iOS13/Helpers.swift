@@ -46,3 +46,21 @@ extension ViewController {
 //    UIDevice.current.setValue(value, forKey: "orientation")
 //    UIViewController.attemptRotationToDeviceOrientation()
 //}
+
+
+
+
+
+
+
+
+
+//Code that was in plusButton
+
+//if let numValue = resultLabel.text{
+//    ViewController.firstValue = Double(numValue)!
+//    resultLabel.text = numValue
+//    ViewController.operationHandler = (sender.titleLabel?.text)!
+//    ViewController.opStatus = true
+//    ViewController.equalDeduplicator = false
+//}
