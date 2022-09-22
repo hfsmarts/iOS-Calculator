@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     public static var firstValue = 0.0
     public static var finalValue = 0.0
+    public static var controller1 = 0
+    
     public static var opStatus = false
     public static var equalDeduplicator = true
     public static var operationHandler = ""
@@ -36,25 +38,49 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
-                if let numValue = resultLabel.text{
-                    ViewController.firstValue = Double(numValue)!
-                    ViewController.operationHandler = (sender.titleLabel?.text)!
-                    ViewController.opStatus = true
-                    ViewController.equalDeduplicator = false
+        if let numValue = resultLabel.text{
+            ViewController.firstValue = Double(numValue)!
+            ViewController.operationHandler = (sender.titleLabel?.text)!
+                        
+            if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
+                print("+ or - is first operation")
+                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
+                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                resultLabel.text = String(Int(ViewController.finalValue))
+                //belaj
+                
+                
+            } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
+                print("* or / is first operation")
+                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
+                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                resultLabel.text = String(Int(ViewController.finalValue))
+                //belaj
+                
+                
+            } else {
+                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
+                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                resultLabel.text = String(Int(ViewController.finalValue))
+                //belaj
             }
+            
+            
+            ViewController.opStatus = true
+            ViewController.equalDeduplicator = false
+        }
+        ViewController.controller1 += 1
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
             if let numValue = resultLabel.text{
                 let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
-                print(expression)
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
                 if floor(ViewController.finalValue) == ViewController.finalValue{
                     resultLabel.text = String(format: "%.0f", ViewController.finalValue)
                 } else {
-                     resultLabel.text = String(format: "%.9f", ViewController.finalValue)
-                  
+                    resultLabel.text = String(format: "%.9f", ViewController.finalValue)
                 }
                 ViewController.opStatus = true
             }
@@ -66,6 +92,7 @@ class ViewController: UIViewController {
         resultLabel.text = "0"
         ViewController.firstValue = 0
         ViewController.finalValue = 0
+        ViewController.controller1 = 0
     }
     
     @IBAction func plusMinusButton(_ sender: UIButton) {
@@ -86,7 +113,7 @@ class ViewController: UIViewController {
         if Int(resultLabel.text ?? "0") != 0{
             if let numValue = resultLabel.text{
                 if let toDouble = Double(numValue){
-                        ViewController.finalValue = toDouble / 100
+                    ViewController.finalValue = toDouble / 100
                 }
                 resultLabel.text? = String(ViewController.finalValue)
             }
