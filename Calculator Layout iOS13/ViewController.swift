@@ -23,6 +23,10 @@ class ViewController: UIViewController {
     public static var equalDeduplicator = true
     public static var operationHandler = ""
     
+    public func updateLabelValue(){
+        
+    }
+    
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func numOneButton(_ sender: UIButton) {
@@ -43,26 +47,28 @@ class ViewController: UIViewController {
             ViewController.operationHandler = (sender.titleLabel?.text)!
                         
             if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
-                print("+ or - is first operation")
                 let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+
                 resultLabel.text = String(Int(ViewController.finalValue))
-                //belaj
-                
                 
             } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
-                print("* or / is first operation")
                 let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+
                 resultLabel.text = String(Int(ViewController.finalValue))
-                //belaj
-                
-                
             } else {
-                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
-                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                resultLabel.text = String(Int(ViewController.finalValue))
-                //belaj
+                
+                print(ViewController.finalValue)
+                
+                print(numValue)
+                
+                
+                //let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
+            //ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                resultLabel.text = String(Int(ViewController.finalValue + Double(numValue)!))
+
+
             }
             
             
