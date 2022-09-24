@@ -47,27 +47,33 @@ class ViewController: UIViewController {
             ViewController.operationHandler = (sender.titleLabel?.text)!
                         
             if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
+                print("initial + or -")
                 let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
 
                 resultLabel.text = String(Int(ViewController.finalValue))
                 
             } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
+                print("initial * or /")
                 let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
 
                 resultLabel.text = String(Int(ViewController.finalValue))
             } else {
                 
-                print(ViewController.finalValue)
-                
-                print(numValue)
+      
                 
                 
-                //let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
-            //ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                resultLabel.text = String(Int(ViewController.finalValue + Double(numValue)!))
-
+                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
+            ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                
+                
+                
+                if floor(ViewController.finalValue) == ViewController.finalValue{
+                    resultLabel.text = String(format: "%.0f", ViewController.finalValue)
+                } else {
+                    resultLabel.text = String(format: "%.9f", ViewController.finalValue)
+                }
 
             }
             
