@@ -68,12 +68,6 @@ class ViewController: UIViewController {
             ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
                 
                 
-                
-                if floor(ViewController.finalValue) == ViewController.finalValue{
-                    resultLabel.text = String(format: "%.0f", ViewController.finalValue)
-                } else {
-                    resultLabel.text = String(format: "%.9f", ViewController.finalValue)
-                }
 
             }
             
