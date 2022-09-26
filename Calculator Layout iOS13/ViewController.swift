@@ -8,8 +8,8 @@
 //
 
 import UIKit
+
 class ViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         resultLabel.text = "0"
@@ -42,46 +42,42 @@ class ViewController: UIViewController {
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
-        if let numValue = resultLabel.text{
-            ViewController.firstValue = Double(numValue)!
-            ViewController.operationHandler = (sender.titleLabel?.text)!
-                        
-            if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
-                print("initial + or -")
-                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
-                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+        if ViewController.equalDeduplicator == true{
+            if let numValue = resultLabel.text{
+                ViewController.firstValue = Double(numValue)!
+                ViewController.operationHandler = (sender.titleLabel?.text)!
+                
+                
+                if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
+                    let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
+                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                    resultLabel.text = String(Int(ViewController.finalValue))
 
-                resultLabel.text = String(Int(ViewController.finalValue))
-                
-            } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
-                print("initial * or /")
-                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
-                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
+                    let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
+                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                    resultLabel.text = String(Int(ViewController.finalValue))
 
-                resultLabel.text = String(Int(ViewController.finalValue))
-            } else {
+                } else {
+                    let expression = NSExpression(format: "\(ViewController.finalValue)\(ViewController.operationHandler)\(ViewController.firstValue)")
+                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+                    resultLabel.text = String(Int(ViewController.finalValue))
+                }
                 
-      
-                
-                
-                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
-            ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                
-                
-
+                ViewController.opStatus = true
+                ViewController.equalDeduplicator = false
             }
-            
-            
-            ViewController.opStatus = true
-            ViewController.equalDeduplicator = false
         }
         ViewController.controller1 += 1
+        if let opHandler = sender.titleLabel?.text{
+            ViewController.operationHandler = opHandler
+        }
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
             if let numValue = resultLabel.text{
-                let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(numValue)")
+                let expression = NSExpression(format: "\(ViewController.finalValue)\(ViewController.operationHandler)\(numValue)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
                 if floor(ViewController.finalValue) == ViewController.finalValue{
                     resultLabel.text = String(format: "%.0f", ViewController.finalValue)
@@ -99,6 +95,7 @@ class ViewController: UIViewController {
         ViewController.firstValue = 0
         ViewController.finalValue = 0
         ViewController.controller1 = 0
+        ViewController.operationHandler = ""
     }
     
     @IBAction func plusMinusButton(_ sender: UIButton) {
