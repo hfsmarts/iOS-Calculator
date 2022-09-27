@@ -13,9 +13,24 @@ import Foundation
 
    
 extension ViewController {
-    func equalFunc(){
-
+  
+    func contain(x: Double, y: Double){
+        let expression = NSExpression(format: "\(x)\(ViewController.operationHandler)\(y)")
+        let r = ViewController.firstValue.truncatingRemainder(dividingBy: ViewController.firstValue)
+        if r == 0 {
+            ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+            resultLabel.text = String(Int(ViewController.finalValue))
+        } else {
+            ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+            resultLabel.text = String(ViewController.finalValue)
+        }
     }
+
+    
+    
+    
+    
+    
 }
 
 

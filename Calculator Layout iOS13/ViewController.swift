@@ -23,15 +23,13 @@ class ViewController: UIViewController {
     public static var equalDeduplicator = true
     public static var operationHandler = ""
     
-    public func updateLabelValue(){
-        
-    }
-    
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func numOneButton(_ sender: UIButton) {
+
         if resultLabel.text != "0" && ViewController.opStatus == false{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+            
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
@@ -45,25 +43,15 @@ class ViewController: UIViewController {
         if ViewController.equalDeduplicator == true{
             if let numValue = resultLabel.text{
                 ViewController.firstValue = Double(numValue)!
+                resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
-                
-                
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
-                    let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(0)")
-                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                    resultLabel.text = String(Int(ViewController.finalValue))
-
+                    contain(x: ViewController.firstValue, y: 0)
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
-                    let expression = NSExpression(format: "\(ViewController.firstValue)\(ViewController.operationHandler)\(1)")
-                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                    resultLabel.text = String(Int(ViewController.finalValue))
-
+                    contain(x: ViewController.firstValue, y: 1.0)
                 } else {
-                    let expression = NSExpression(format: "\(ViewController.finalValue)\(ViewController.operationHandler)\(ViewController.firstValue)")
-                    ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                    resultLabel.text = String(Int(ViewController.finalValue))
+                    contain(x: ViewController.finalValue, y: ViewController.firstValue)
                 }
-                
                 ViewController.opStatus = true
                 ViewController.equalDeduplicator = false
             }
@@ -122,6 +110,17 @@ class ViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func dotButton(_ sender: UIButton) {
+        if let currentValue = resultLabel.text{
+            if currentValue.contains("."){
+                
+            }else{
+                resultLabel.text = resultLabel.text?.appending(".")
+            }
+        }
+    }
+    
     
     
     
