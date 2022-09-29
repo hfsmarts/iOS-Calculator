@@ -45,6 +45,11 @@ class ViewController: UIViewController {
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
+                
+                
+                print("\(ViewController.controller1) and \(ViewController.operationHandler)")
+                
+                
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, y: 0)
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
@@ -57,6 +62,12 @@ class ViewController: UIViewController {
             }
         }
         ViewController.controller1 += 1
+        ViewController.operationHandler = (sender.titleLabel?.text)!
+        print("\(ViewController.operationHandler)")
+
+        
+        
+        
         if let opHandler = sender.titleLabel?.text{
             ViewController.operationHandler = opHandler
         }
@@ -114,7 +125,6 @@ class ViewController: UIViewController {
     @IBAction func dotButton(_ sender: UIButton) {
         if let currentValue = resultLabel.text{
             if currentValue.contains("."){
-                
             }else{
                 resultLabel.text = resultLabel.text?.appending(".")
             }
