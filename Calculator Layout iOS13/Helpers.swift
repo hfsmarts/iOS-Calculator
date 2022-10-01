@@ -15,7 +15,12 @@ extension ViewController {
     func contain(x: Double, op: String, y: Double){
         let expression = NSExpression(format: "\(x)\(op)\(y)")
    
+        print(expression)
+    
         ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+        
+
+        
         let isInteger = floor(ViewController.finalValue) == ViewController.finalValue
         if isInteger {
             resultLabel.text = String(Int(ViewController.finalValue))

@@ -18,21 +18,17 @@ class ViewController: UIViewController {
     public static var firstValue = 0.0
     public static var finalValue = 0.0
     public static var controller1 = 0
-    
     public static var opStatus = false
     public static var equalDeduplicator = true
     public static var operationHandler = ""
-    
-    //test line
-    public static var tempOperator = ""
+    //extra code
+    public static var additionalOpHandler = ""
     
     @IBOutlet var resultLabel: UILabel!
-    
     @IBAction func numOneButton(_ sender: UIButton) {
         
         if resultLabel.text != "0" && ViewController.opStatus == false{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
-            
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
@@ -49,31 +45,32 @@ class ViewController: UIViewController {
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
                 
+                print("Printing from here \(ViewController.operationHandler)")
+              //  print("Printing from here \()")
+                
+                
+                
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
-                    
-                    
-                    if let newOperation = sender.titleLabel?.text{
-                        ViewController.tempOperator = newOperation
-                    }
-                    print("This is temOPerator \(ViewController.tempOperator)")
-                    
-                    
+                    ViewController.additionalOpHandler = ViewController.operationHandler
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
+                    ViewController.additionalOpHandler = ViewController.operationHandler
                 } else {
-                    contain(x: ViewController.finalValue, op:ViewController.operationHandler, y: ViewController.firstValue)
+                    contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
+                    ViewController.additionalOpHandler = ViewController.operationHandler
                 }
                 ViewController.opStatus = true
-                ViewController.equalDeduplicator = false
             }
         }
+        
         ViewController.controller1 += 1
         ViewController.operationHandler = (sender.titleLabel?.text)!
         
         if let opHandler = sender.titleLabel?.text{
             ViewController.operationHandler = opHandler
         }
+        ViewController.equalDeduplicator = false
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
