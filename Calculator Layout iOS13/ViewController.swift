@@ -21,7 +21,6 @@ class ViewController: UIViewController {
     public static var opStatus = false
     public static var equalDeduplicator = true
     public static var operationHandler = ""
-    //extra code
     public static var additionalOpHandler = ""
     
     @IBOutlet var resultLabel: UILabel!
@@ -45,10 +44,6 @@ class ViewController: UIViewController {
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
                 
-                print("Printing from here \(ViewController.operationHandler)")
-              //  print("Printing from here \()")
-                
-                
                 
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
@@ -69,6 +64,7 @@ class ViewController: UIViewController {
         
         if let opHandler = sender.titleLabel?.text{
             ViewController.operationHandler = opHandler
+            ViewController.additionalOpHandler = opHandler
         }
         ViewController.equalDeduplicator = false
     }
@@ -127,6 +123,8 @@ class ViewController: UIViewController {
             if currentValue.contains("."){
             }else{
                 resultLabel.text = resultLabel.text?.appending(".")
+
+
             }
         }
     }
