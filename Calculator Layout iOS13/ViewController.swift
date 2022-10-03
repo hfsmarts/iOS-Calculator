@@ -122,7 +122,19 @@ class ViewController: UIViewController {
         if let currentValue = resultLabel.text{
             if currentValue.contains("."){
             }else{
-                resultLabel.text = resultLabel.text?.appending(".")
+                
+                if let newVar = resultLabel.text?.appending("."){
+                    if let newNewVar = Double(newVar){
+                        ViewController.finalValue = newNewVar
+                        resultLabel.text = String(newNewVar)
+                    }
+                    
+                }
+                
+                print("ViewController final value is \(ViewController.finalValue)")
+                print(type(of: ViewController.finalValue))
+                
+                
 
 
             }
