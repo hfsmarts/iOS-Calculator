@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         resultLabel.text = "0"
     }
     
+    
     public static var firstValue = 0.0
     public static var finalValue = 0.0
     public static var controller1 = 0
@@ -22,10 +23,10 @@ class ViewController: UIViewController {
     public static var equalDeduplicator = true
     public static var operationHandler = ""
     public static var additionalOpHandler = ""
-    
     @IBOutlet var resultLabel: UILabel!
+    
+    
     @IBAction func numOneButton(_ sender: UIButton) {
-        
         if resultLabel.text != "0" && ViewController.opStatus == false{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
         } else {
@@ -43,7 +44,6 @@ class ViewController: UIViewController {
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
-                
                 
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
@@ -122,21 +122,7 @@ class ViewController: UIViewController {
         if let currentValue = resultLabel.text{
             if currentValue.contains("."){
             }else{
-                
-                if let newVar = resultLabel.text?.appending("."){
-                    if let newNewVar = Double(newVar){
-                        ViewController.finalValue = newNewVar
-                        resultLabel.text = String(newNewVar)
-                    }
-                    
-                }
-                
-                print("ViewController final value is \(ViewController.finalValue)")
-                print(type(of: ViewController.finalValue))
-                
-                
-
-
+                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
             }
         }
     }
