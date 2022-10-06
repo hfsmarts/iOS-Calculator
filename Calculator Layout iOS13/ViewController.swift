@@ -125,6 +125,13 @@ class ViewController: UIViewController {
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
             }
         }
+        
+        
+        //test opStatus in order to fix .
+        ViewController.opStatus = false
+
+        
+        
     }
     
     
