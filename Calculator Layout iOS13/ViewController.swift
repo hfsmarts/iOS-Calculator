@@ -40,6 +40,19 @@ class ViewController: UIViewController {
     
     @IBAction func plusButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
+            
+            
+            
+            
+            
+            
+            print(ViewController.equalDeduplicator)
+            
+            
+            
+            
+            
+            
             if let numValue = resultLabel.text{
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
@@ -127,6 +140,9 @@ class ViewController: UIViewController {
         }
         //test opStatus in order to fix .
         ViewController.opStatus = false
+        //test operationHandler in order to fix .
+        ViewController.operationHandler = ""
+
         
     }
     
