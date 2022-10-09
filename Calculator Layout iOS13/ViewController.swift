@@ -42,15 +42,7 @@ class ViewController: UIViewController {
         if ViewController.equalDeduplicator == true{
             
             
-            
-            
-            
-            
             print(ViewController.equalDeduplicator)
-            
-            
-            
-            
             
             
             if let numValue = resultLabel.text{
@@ -138,6 +130,8 @@ class ViewController: UIViewController {
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
             }
         }
+        
+        
         //test opStatus in order to fix .
         ViewController.opStatus = false
         //test operationHandler in order to fix .
