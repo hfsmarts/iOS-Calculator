@@ -27,8 +27,39 @@ class ViewController: UIViewController {
     
     
     @IBAction func numOneButton(_ sender: UIButton) {
-        if resultLabel.text != "0" && ViewController.opStatus == false{
-            resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+        
+      //  print(resultLabel.text!)
+    //    print(ViewController.opStatus)
+        
+        
+        
+   
+            
+            
+            //ELSE IF STATEMENT BELOW IS RISKY
+      if resultLabel.text != "0" && ViewController.opStatus == false && resultLabel.text!.contains(".") {
+        resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+
+          print("contains")
+
+    //DO SOMETHING
+    
+        
+            
+      } else if resultLabel.text != "0" && ViewController.opStatus == false{
+              resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+            
+            
+            
+
+            
+
+            
+            
+            
+        //IF DOES NOT WORK DELETE WHOLE CODE
+
+            
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
@@ -40,11 +71,7 @@ class ViewController: UIViewController {
     
     @IBAction func plusButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
-            
-            
-            print(ViewController.equalDeduplicator)
-            
-            
+
             if let numValue = resultLabel.text{
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
@@ -110,6 +137,16 @@ class ViewController: UIViewController {
                 }
             }
         }
+        
+        
+        
+        
+        //consider assining bool value to equaldeduplicator and opStatus
+        
+        
+        
+        
+        
     }
     
     @IBAction func percentageButton(_ sender: UIButton) {
@@ -131,9 +168,10 @@ class ViewController: UIViewController {
             }
         }
         
-        
-        //test opStatus in order to fix .
+    
         ViewController.opStatus = false
+        
+
         //test operationHandler in order to fix .
         ViewController.operationHandler = ""
 
