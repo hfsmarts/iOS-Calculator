@@ -25,7 +25,14 @@ extension ViewController {
 }
 
 
+//was part of number batton from begining, making first stament if second else
 
+//if resultLabel.text != "0" && ViewController.opStatus == false && resultLabel.text!.contains(".") {
+//  resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+//
+//    print("if statment passed and equalDeduplicator is \(ViewController.equalDeduplicator)")
+//      
+//} else
 
 
 

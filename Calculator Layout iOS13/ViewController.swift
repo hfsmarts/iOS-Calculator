@@ -15,7 +15,6 @@ class ViewController: UIViewController {
         resultLabel.text = "0"
     }
     
-    
     public static var firstValue = 0.0
     public static var finalValue = 0.0
     public static var controller1 = 0
@@ -25,54 +24,29 @@ class ViewController: UIViewController {
     public static var additionalOpHandler = ""
     @IBOutlet var resultLabel: UILabel!
     
-    
     @IBAction func numOneButton(_ sender: UIButton) {
-        
-      //  print(resultLabel.text!)
-    //    print(ViewController.opStatus)
-        
-        
-        
-   
+        if resultLabel.text != "0" && ViewController.opStatus == false{
+            resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
             
-            
-            //ELSE IF STATEMENT BELOW IS RISKY
-      if resultLabel.text != "0" && ViewController.opStatus == false && resultLabel.text!.contains(".") {
-        resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+            print("first")
 
-          print("contains")
-
-    //DO SOMETHING
-    
-        
-            
-      } else if resultLabel.text != "0" && ViewController.opStatus == false{
-              resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
-            
-            
-            
-
-            
-
-            
-            
-            
-        //IF DOES NOT WORK DELETE WHOLE CODE
-
-            
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
                 ViewController.opStatus = false
                 ViewController.equalDeduplicator = true
             }
+            print("second")
+
         }
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
-
+            
             if let numValue = resultLabel.text{
+                print("currrent text labes is \(numValue)")
+                
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
@@ -109,7 +83,7 @@ class ViewController: UIViewController {
                 if floor(ViewController.finalValue) == ViewController.finalValue{
                     resultLabel.text = String(format: "%.0f", ViewController.finalValue)
                 } else {
-                    resultLabel.text = String(format: "%.9f", ViewController.finalValue)
+                    resultLabel.text = String(format: "%.6f", ViewController.finalValue)
                 }
                 ViewController.opStatus = true
             }
@@ -131,8 +105,16 @@ class ViewController: UIViewController {
                 if let toDouble = Double(numValue){
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
+                        //Solving FICA-19
+                        ViewController.finalValue = Double(resultLabel.text!)!
                     } else {
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
+                        //Solving FICA-19
+                        
+                        
+                        // Double check with changing sign two or three times will result be correct
+                        // ViewController.finalValue = Double(resultLabel.text!)!
+                        
                     }
                 }
             }
@@ -163,18 +145,31 @@ class ViewController: UIViewController {
     @IBAction func dotButton(_ sender: UIButton) {
         if let currentValue = resultLabel.text{
             if currentValue.contains("."){
+                //DO nothing since it already is decimal number
+            }else if ViewController.equalDeduplicator == false {
+               
+
+                resultLabel.text? = "0".appending(".")
+                
+                //risky
+               // ViewController.finalValue = Double(resultLabel.text!)!
+
+                ViewController.equalDeduplicator = true
+                
+                
             }else{
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
+                
             }
         }
         
-    
+        
         ViewController.opStatus = false
         
-
+        
         //test operationHandler in order to fix .
         ViewController.operationHandler = ""
-
+        
         
     }
     
