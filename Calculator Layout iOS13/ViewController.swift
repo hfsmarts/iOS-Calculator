@@ -27,17 +27,14 @@ class ViewController: UIViewController {
     @IBAction func numOneButton(_ sender: UIButton) {
         if resultLabel.text != "0" && ViewController.opStatus == false{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+     
             
-            print("first")
-
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
                 ViewController.opStatus = false
                 ViewController.equalDeduplicator = true
             }
-            print("second")
-
         }
     }
     
@@ -45,8 +42,6 @@ class ViewController: UIViewController {
         if ViewController.equalDeduplicator == true{
             
             if let numValue = resultLabel.text{
-                print("currrent text labes is \(numValue)")
-                
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
@@ -78,13 +73,7 @@ class ViewController: UIViewController {
     @IBAction func equalButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
             if let numValue = resultLabel.text{
-                let expression = NSExpression(format: "\(ViewController.finalValue)\(ViewController.operationHandler)\(numValue)")
-                ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-                if floor(ViewController.finalValue) == ViewController.finalValue{
-                    resultLabel.text = String(format: "%.0f", ViewController.finalValue)
-                } else {
-                    resultLabel.text = String(format: "%.6f", ViewController.finalValue)
-                }
+                contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
                 ViewController.opStatus = true
             }
         }
@@ -105,30 +94,14 @@ class ViewController: UIViewController {
                 if let toDouble = Double(numValue){
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
-                        //Solving FICA-19
                         ViewController.finalValue = Double(resultLabel.text!)!
                     } else {
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
-                        //Solving FICA-19
-                        
-                        
-                        // Double check with changing sign two or three times will result be correct
-                        // ViewController.finalValue = Double(resultLabel.text!)!
-                        
+                        ViewController.finalValue = Double(resultLabel.text!)!
                     }
                 }
             }
         }
-        
-        
-        
-        
-        //consider assining bool value to equaldeduplicator and opStatus
-        
-        
-        
-        
-        
     }
     
     @IBAction func percentageButton(_ sender: UIButton) {
@@ -144,33 +117,20 @@ class ViewController: UIViewController {
     
     @IBAction func dotButton(_ sender: UIButton) {
         if let currentValue = resultLabel.text{
-            if currentValue.contains("."){
-                //DO nothing since it already is decimal number
-            }else if ViewController.equalDeduplicator == false {
-               
-
+            if currentValue.contains(".") && ViewController.equalDeduplicator == false {
                 resultLabel.text? = "0".appending(".")
-                
-                //risky
-               // ViewController.finalValue = Double(resultLabel.text!)!
-
                 ViewController.equalDeduplicator = true
                 
-                
+            }else if currentValue.contains(".") {
+            }else if ViewController.equalDeduplicator == false {
+                resultLabel.text? = "0".appending(".")
+                ViewController.equalDeduplicator = true
             }else{
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
-                
             }
         }
-        
-        
         ViewController.opStatus = false
-        
-        
-        //test operationHandler in order to fix .
         ViewController.operationHandler = ""
-        
-        
     }
     
     
