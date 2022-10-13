@@ -20,21 +20,28 @@ class ViewController: UIViewController {
     public static var controller1 = 0
     public static var opStatus = false
     public static var equalDeduplicator = true
+    public static var equalSetter = true
     public static var operationHandler = ""
     public static var additionalOpHandler = ""
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func numOneButton(_ sender: UIButton) {
-        if resultLabel.text != "0" && ViewController.opStatus == false{
-            resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
-     
+        if ViewController.equalSetter == false && resultLabel.text != "0" && ViewController.opStatus == true {
+            resultLabel.text = (sender.titleLabel?.text)!
+            if let numValue = resultLabel.text {
+                ViewController.finalValue = Double(numValue)!
+            }
             
+    }else if resultLabel.text != "0" && ViewController.opStatus == false{
+            resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
                 ViewController.opStatus = false
                 ViewController.equalDeduplicator = true
             }
+
         }
     }
     
@@ -68,6 +75,7 @@ class ViewController: UIViewController {
             ViewController.additionalOpHandler = opHandler
         }
         ViewController.equalDeduplicator = false
+        ViewController.equalSetter = true
     }
     
     @IBAction func equalButton(_ sender: UIButton) {
@@ -78,6 +86,7 @@ class ViewController: UIViewController {
             }
         }
         ViewController.equalDeduplicator = false
+        ViewController.equalSetter = false
     }
     
     @IBAction func acButton(_ sender: UIButton) {
@@ -121,10 +130,27 @@ class ViewController: UIViewController {
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalDeduplicator = true
                 
-            }else if currentValue.contains(".") {
+                
+                
+                
+            }else if ViewController.equalSetter == false && ViewController.opStatus == true{
+                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
+
+                
+                
+                
+                
+                
+                
+                
+                
             }else if ViewController.equalDeduplicator == false {
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalDeduplicator = true
+
+
+                
+                
             }else{
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
             }
@@ -147,4 +173,5 @@ class ViewController: UIViewController {
 
 
 
+//            }else if currentValue.contains("."){
 
