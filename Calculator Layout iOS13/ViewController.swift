@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     public static var opStatus = false
     public static var equalDeduplicator = true
     public static var equalSetter = true
+    public static var decimalHelper = true
     public static var operationHandler = ""
     public static var additionalOpHandler = ""
     @IBOutlet var resultLabel: UILabel!
@@ -56,10 +57,25 @@ class ViewController: UIViewController {
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
+                    print("if radi")
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
+
+                    
+                }else if ViewController.decimalHelper == false {
+                  
+
+                    print("//////////////////")
+                    print("ViewController final value is \(ViewController.finalValue)")
+                    print("ViewController first value is \(ViewController.firstValue)")
+                    
+
+                    
+                    
                 } else {
+                    print("else radi")
+
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
                     ViewController.additionalOpHandler = ViewController.operationHandler
                 }
@@ -130,19 +146,18 @@ class ViewController: UIViewController {
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalDeduplicator = true
                 
-                
-                
-                
+    
             }else if ViewController.equalSetter == false && ViewController.opStatus == true{
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
-
                 
                 
+                print("From here 100%")
+                ViewController.decimalHelper = false
                 
                 
-                
-                
-                
+                //risky line
+                ViewController.equalDeduplicator = true
+                   
                 
             }else if ViewController.equalDeduplicator == false {
                 resultLabel.text? = "0".appending(".")
