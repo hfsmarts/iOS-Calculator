@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     
     public static var firstValue = 0.0
     public static var finalValue = 0.0
+    //dajBOze
+    public static var testVarFor = 0.0
+    public static var intTester = 0
+    
     public static var controller1 = 0
     public static var opStatus = false
     public static var equalDeduplicator = true
@@ -63,14 +67,31 @@ class ViewController: UIViewController {
                     ViewController.additionalOpHandler = ViewController.operationHandler
 
                     
-                }else if ViewController.decimalHelper == false {
-                  
+                    
+                    //and one of two numbers contains . must be added in order that app worsk properly
+                }else if ViewController.decimalHelper == false && ViewController.equalDeduplicator == true {
+                                      
+                    if ViewController.intTester == 0 {
+                        if let numValue = resultLabel.text{
+                            ViewController.testVarFor = Double(numValue)!
+                        }
+                    }
 
+//                    3.2 + 1.3 + will show 4.5
+//                    5 - 9.5
+                    
                     print("//////////////////")
                     print("ViewController final value is \(ViewController.finalValue)")
                     print("ViewController first value is \(ViewController.firstValue)")
-                    
+                    print("ViewController testVarFor value is \(ViewController.testVarFor)")
 
+                    contain(x: ViewController.testVarFor, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
+                    ViewController.additionalOpHandler = ViewController.operationHandler
+                    
+                    ViewController.intTester += 1
+                    
+                    
+                    
                     
                     
                 } else {
@@ -151,11 +172,7 @@ class ViewController: UIViewController {
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
                 
                 
-                print("From here 100%")
                 ViewController.decimalHelper = false
-                
-                
-                //risky line
                 ViewController.equalDeduplicator = true
                    
                 
