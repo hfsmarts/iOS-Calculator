@@ -17,15 +17,13 @@ class ViewController: UIViewController {
     
     public static var firstValue = 0.0
     public static var finalValue = 0.0
-    //dajBOze
-    public static var testVarFor = 0.0
-    public static var intTester = 0
-    
     public static var controller1 = 0
     public static var opStatus = false
     public static var equalDeduplicator = true
+    
     public static var equalSetter = true
     public static var decimalHelper = true
+    
     public static var operationHandler = ""
     public static var additionalOpHandler = ""
     @IBOutlet var resultLabel: UILabel!
@@ -46,7 +44,6 @@ class ViewController: UIViewController {
                 ViewController.opStatus = false
                 ViewController.equalDeduplicator = true
             }
-
         }
     }
     
@@ -61,42 +58,11 @@ class ViewController: UIViewController {
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-                    print("if radi")
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-
-                    
-                    
-                    //and one of two numbers contains . must be added in order that app worsk properly
-                }else if ViewController.decimalHelper == false && ViewController.equalDeduplicator == true {
-                                      
-                    if ViewController.intTester == 0 {
-                        if let numValue = resultLabel.text{
-                            ViewController.testVarFor = Double(numValue)!
-                        }
-                    }
-
-//                    3.2 + 1.3 + will show 4.5
-//                    5 - 9.5
-                    
-                    print("//////////////////")
-                    print("ViewController final value is \(ViewController.finalValue)")
-                    print("ViewController first value is \(ViewController.firstValue)")
-                    print("ViewController testVarFor value is \(ViewController.testVarFor)")
-
-                    contain(x: ViewController.testVarFor, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
-                    ViewController.additionalOpHandler = ViewController.operationHandler
-                    
-                    ViewController.intTester += 1
-                    
-                    
-                    
-                    
                     
                 } else {
-                    print("else radi")
-
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
                     ViewController.additionalOpHandler = ViewController.operationHandler
                 }
@@ -166,29 +132,33 @@ class ViewController: UIViewController {
             if currentValue.contains(".") && ViewController.equalDeduplicator == false {
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalDeduplicator = true
-                
+                print("dot button case 1")
     
             }else if ViewController.equalSetter == false && ViewController.opStatus == true{
                 resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
-                
-                
+                print("dot button case 2")
+
                 ViewController.decimalHelper = false
                 ViewController.equalDeduplicator = true
                    
-                
             }else if ViewController.equalDeduplicator == false {
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalDeduplicator = true
+                print("dot button case 3")
 
-
+            } else if ViewController.equalDeduplicator == false{
                 
-                
-            }else{
-                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
             }
+            
+//            else{
+//                print("dot button case 4")
+//                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
+//                ViewController.equalDeduplicator = false
+//            }
         }
         ViewController.opStatus = false
         ViewController.operationHandler = ""
+        
     }
     
     
