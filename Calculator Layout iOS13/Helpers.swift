@@ -50,7 +50,18 @@ extension ViewController {
 //    
 //    ViewController.intTester += 1
 //    
-//    
+//
+
+
+//            }else if ViewController.equalSetter == false && ViewController.opStatus == true{
+//                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
+//                print("dot button case 2")
+//                ViewController.equalDeduplicator = true
+//
+//            }else if ViewController.equalDeduplicator == false {
+//                resultLabel.text? = "0".appending(".")
+//                ViewController.equalDeduplicator = true
+//                print("dot button case 3")
     
     
     
