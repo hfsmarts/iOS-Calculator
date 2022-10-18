@@ -22,55 +22,28 @@ extension ViewController {
             resultLabel.text = String(ViewController.finalValue)
         }
     }
+    
+    func ac(){
+        resultLabel.text = "0"
+        ViewController.firstValue = 0.0
+        ViewController.finalValue = 0.0
+        ViewController.controller1 = 0
+        ViewController.opStatus = false
+        ViewController.equalDeduplicator = true
+        ViewController.equalSetter = true
+        ViewController.operationHandler = ""
+        ViewController.additionalOpHandler = ""
+        //Dot counter is new variable in order not to add multiple . on decimal number
+        ViewController.dotCounter = 0
+        //This variable is saying that number is last pressed
+        ViewController.equalCounter = 0
+        ViewController.isNumLastPressed = true
+    }
+    
 }
 
 
-//Comments, not needed for now
-//and one of two numbers contains . must be added in order that app worsk properly
-//                    3.2 + 1.3 + will show 4.5
-//                    5 - 9.5
 
-
-
-//}else if ViewController.decimalHelper == false && ViewController.equalDeduplicator == true {
-//    
-//    if ViewController.intTester == 0 {
-//        if let numValue = resultLabel.text{
-//            ViewController.testVarFor = Double(numValue)!
-//        }
-//    }
-//    
-//    print("//////////////////")
-//    print("ViewController final value is \(ViewController.finalValue)")
-//    print("ViewController first value is \(ViewController.firstValue)")
-//    print("ViewController testVarFor value is \(ViewController.testVarFor)")
-//    
-//    contain(x: ViewController.testVarFor, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
-//    ViewController.additionalOpHandler = ViewController.operationHandler
-//    
-//    ViewController.intTester += 1
-//    
-//
-
-
-//            }else if ViewController.equalSetter == false && ViewController.opStatus == true{
-//                resultLabel.text? = resultLabel.text?.appending(".") ?? "0"
-//                print("dot button case 2")
-//                ViewController.equalDeduplicator = true
-//
-//            }else if ViewController.equalDeduplicator == false {
-//                resultLabel.text? = "0".appending(".")
-//                ViewController.equalDeduplicator = true
-//                print("dot button case 3")
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     

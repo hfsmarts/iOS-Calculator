@@ -25,8 +25,10 @@ class ViewController: UIViewController {
     public static var additionalOpHandler = ""
     //Dot counter is new variable in order not to add multiple . on decimal number
     public static var dotCounter = 0
+    public static var equalCounter = 0
     //This variable is saying that number is last pressed
-    public static var isNumLastPressed = true
+    public static var isNumLastPressed = false
+    
     
     @IBOutlet var resultLabel: UILabel!
     
@@ -48,9 +50,10 @@ class ViewController: UIViewController {
                 ViewController.equalDeduplicator = true
             }
         }
-        ViewController.isNumLastPressed = false
+        ViewController.isNumLastPressed = true
+     
+
     }
-    
     
     @IBAction func plusButton(_ sender: UIButton) {
         if ViewController.equalDeduplicator == true{
@@ -89,40 +92,37 @@ class ViewController: UIViewController {
         ViewController.dotCounter = 0
     }
     
-    
     @IBAction func equalButton(_ sender: UIButton) {
-        if ViewController.equalDeduplicator == true{
             if let numValue = resultLabel.text{
-                contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
-                ViewController.opStatus = true
+                
+                //equal sign pressed resultLabel.text = 0
+                if numValue == "0"  && ViewController.equalDeduplicator == true{
+                    resultLabel.text = resultLabel.text
+                    ViewController.equalDeduplicator = true
+                }
+                
+                //equal sign pressed . is the last item in resultLabel.text
+                else if numValue.last == "." && ViewController.equalDeduplicator == true{
+                    resultLabel.text = "0"
+                    ViewController.equalDeduplicator = true
+                }
+                
+                //calculation to be done, normal case, two cases above are extreme cases
+                else if ViewController.equalDeduplicator == true{
+                    contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
+                    ViewController.opStatus = true
+           }
+                ViewController.equalDeduplicator = false
+                ViewController.equalSetter = false
+                ViewController.firstValue = 0.0
+                ViewController.dotCounter = 0
+                ViewController.operationHandler = ""
+                ViewController.additionalOpHandler = ""
             }
-        }
-        ViewController.equalDeduplicator = false
-        ViewController.equalSetter = false
-        
-        //what this has naver beeen implmented
-     ViewController.firstValue = 0.0
-//        ViewController.finalValue = 0.0
-        
-        //reseting dot button
-        ViewController.dotCounter = 0
-
     }
     
     @IBAction func acButton(_ sender: UIButton) {
-        resultLabel.text = "0"
-        ViewController.firstValue = 0.0
-        ViewController.finalValue = 0.0
-        ViewController.controller1 = 0
-        ViewController.opStatus = false
-        ViewController.equalDeduplicator = true
-        ViewController.equalSetter = true
-        ViewController.operationHandler = ""
-        ViewController.additionalOpHandler = ""
-        //Dot counter is new variable in order not to add multiple . on decimal number
-        ViewController.dotCounter = 0
-        //This variable is saying that number is last pressed
-        ViewController.isNumLastPressed = true
+        ac()
     }
     
     @IBAction func plusMinusButton(_ sender: UIButton) {
@@ -155,13 +155,30 @@ class ViewController: UIViewController {
     @IBAction func dotButton(_ sender: UIButton) {
         ViewController.dotCounter += 1
         
-        
         if let numValue = resultLabel.text{
             
             
             
+            //APP CRACHES
+            
+            
+            //CASE3 number is laste entered, but number should be without .
+     if ViewController.isNumLastPressed == true && !numValue.contains(".") {
+            resultLabel.text? = numValue.appending(".")
+         //risky line below
+         ViewController.equalDeduplicator = true
+         ViewController.equalSetter = true
+
+            print("dot button case 3")
+         
+         
+         
+         
+         
+         
+            
             //CASE1 equal is last button pressed, user entering new value
-        if ViewController.equalSetter == false && ViewController.dotCounter == 1{
+     }else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
             resultLabel.text? = "0".appending(".")
             ViewController.equalSetter = true
             print("dot button case 1")
@@ -173,11 +190,6 @@ class ViewController: UIViewController {
             ViewController.equalDeduplicator = true
             print("dot button case 2")
             print(ViewController.dotCounter)
-            
-            //CASE3 number is laste entered, but number should be without .
-        }else if ViewController.isNumLastPressed == false && !numValue.contains(".") {
-            resultLabel.text? = numValue.appending(".")
-            print("dot button case 3")
             
             //CASE4 number is 0
         }else if numValue == "0" {
@@ -191,6 +203,10 @@ class ViewController: UIViewController {
         
         ViewController.opStatus = false
         ViewController.operationHandler = ""
+            
+            //scary
+            ViewController.equalDeduplicator = true
+
             
         }
     }
