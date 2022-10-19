@@ -14,12 +14,13 @@ extension ViewController {
     
     func contain(x: Double, op: String, y: Double){
         let expression = NSExpression(format: "\(x)\(op)\(y)")
-        ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
-        let isInteger = floor(ViewController.finalValue) == ViewController.finalValue
-        if isInteger {
-            resultLabel.text = String(Int(ViewController.finalValue))
-        } else {
-            resultLabel.text = String(ViewController.finalValue)
+        
+            ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
+            let isInteger = floor(ViewController.finalValue) == ViewController.finalValue
+            if isInteger {
+                resultLabel.text = String(Int(ViewController.finalValue))
+            } else {
+                resultLabel.text = String(ViewController.finalValue)
         }
     }
     

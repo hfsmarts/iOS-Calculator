@@ -63,12 +63,22 @@ class ViewController: UIViewController {
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
                 
+                print("ViewController.operationHandler is \(ViewController.operationHandler)")
+                print("ViewController.additionalOpHandler is \(ViewController.additionalOpHandler)")
+                print("ViewController.firstValue is \(ViewController.firstValue)")
+                print("ViewController.finalValue is \(ViewController.finalValue)")
+                
+                
+                
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
+                    
+              
+                    
                     
                 } else {
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
@@ -118,6 +128,8 @@ class ViewController: UIViewController {
                 ViewController.dotCounter = 0
                 ViewController.operationHandler = ""
                 ViewController.additionalOpHandler = ""
+                ViewController.controller1 = 0
+                ViewController.isNumLastPressed = false
             }
     }
     
@@ -154,13 +166,7 @@ class ViewController: UIViewController {
     
     @IBAction func dotButton(_ sender: UIButton) {
         ViewController.dotCounter += 1
-        
         if let numValue = resultLabel.text{
-            
-            
-            
-            //APP CRACHES
-            
             
             //CASE3 number is laste entered, but number should be without .
      if ViewController.isNumLastPressed == true && !numValue.contains(".") {
@@ -168,14 +174,9 @@ class ViewController: UIViewController {
          //risky line below
          ViewController.equalDeduplicator = true
          ViewController.equalSetter = true
-
             print("dot button case 3")
          
-         
-         
-         
-         
-         
+
             
             //CASE1 equal is last button pressed, user entering new value
      }else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
