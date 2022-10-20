@@ -63,24 +63,13 @@ class ViewController: UIViewController {
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
                 
-                print("ViewController.operationHandler is \(ViewController.operationHandler)")
-                print("ViewController.additionalOpHandler is \(ViewController.additionalOpHandler)")
-                print("ViewController.firstValue is \(ViewController.firstValue)")
-                print("ViewController.finalValue is \(ViewController.finalValue)")
-                
-                
-                
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-                    
-              
-                    
-                    
-                } else {
+                }     else {
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
                     ViewController.additionalOpHandler = ViewController.operationHandler
                 }
@@ -105,22 +94,51 @@ class ViewController: UIViewController {
     @IBAction func equalButton(_ sender: UIButton) {
             if let numValue = resultLabel.text{
                 
+                //This is to print existing values in variables
+                print("ViewController.equalDeduplicator is \(ViewController.equalDeduplicator)")
+                print("ViewController.final is \(ViewController.finalValue)")
+                print("ViewController.first is \(ViewController.firstValue)")
+                
+                // try folllowing for this case if numVale == "0" && ViewController.finalValue
+                
+                if numValue == "0" && ViewController.equalDeduplicator == true && (ViewController.finalValue != 0 || ViewController.finalValue != 0.0){
+                    print("case 2")
+                    ac()
+                    resultLabel.text = "undefined"
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                
                 //equal sign pressed resultLabel.text = 0
-                if numValue == "0"  && ViewController.equalDeduplicator == true{
+               else if numValue == "0"  && ViewController.equalDeduplicator == true{
                     resultLabel.text = resultLabel.text
                     ViewController.equalDeduplicator = true
+                    print("if works equal button")
                 }
                 
                 //equal sign pressed . is the last item in resultLabel.text
                 else if numValue.last == "." && ViewController.equalDeduplicator == true{
                     resultLabel.text = "0"
                     ViewController.equalDeduplicator = true
+                    print("else if 1 works equal button")
                 }
                 
                 //calculation to be done, normal case, two cases above are extreme cases
                 else if ViewController.equalDeduplicator == true{
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
                     ViewController.opStatus = true
+                    print("else if 2 works equal button")
            }
                 ViewController.equalDeduplicator = false
                 ViewController.equalSetter = false
