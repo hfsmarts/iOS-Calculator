@@ -9,23 +9,20 @@
 import UIKit
 import Foundation
 
-
 extension ViewController {
     
     func contain(x: Double, op: String, y: Double){
-        
-        print("Value of x is \(x)")
-        print("Value of op is \(op)")
-        print("Value of y is \(y)")
-        print("             ")
-        
         if (y == 0.0 || y == 0) && op == "/"{
             ac()
             resultLabel.text = "undefined"
 
-            print("cacthed")
-        } else {
+            //values that are assigned at the end of equal button
             
+            ViewController.equalDeduplicator = false
+            ViewController.equalSetter = false
+            ViewController.isNumLastPressed = false
+            
+        } else {
             let expression = NSExpression(format: "\(x)\(op)\(y)")
                 ViewController.finalValue  = (expression.expressionValue(with: nil, context: nil) as? Double)!
                 let isInteger = floor(ViewController.finalValue) == ViewController.finalValue
@@ -53,8 +50,8 @@ extension ViewController {
         //This variable is saying that number is last pressed
         ViewController.equalCounter = 0
         ViewController.isNumLastPressed = true
+        print("AC/DC")
     }
-    
 }
 
 
