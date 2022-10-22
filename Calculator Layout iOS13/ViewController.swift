@@ -28,34 +28,7 @@ class ViewController: UIViewController {
     public static var equalCounter = 0
     //This variable is saying that number is last pressed
     public static var isNumLastPressed = false
-    @IBOutlet var resultLabel: UILabel!{
-        didSet{
-            if resultLabel.text == "undefined"{
-                ac()
-                
-                
-                
-                
-                
-                
-                
-       //AC FUNCTION DOES NOT WORK PROPERLLY IT RESET THE VALUES IN WRONG WAY
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            }
-        }
-    }
+    @IBOutlet var resultLabel: UILabel!
     
     
     @IBAction func numOneButton(_ sender: UIButton) {
@@ -64,20 +37,57 @@ class ViewController: UIViewController {
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
             }
-            
-//            print("num if")
-            
+            print("num 1 if")
         }else if resultLabel.text != "0" && ViewController.opStatus == false && resultLabel.text != "undefined"{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
-//            print("num else if")
+            print("num 2 else if, resultLabel.text = \(resultLabel.text!)")
+            
+            //   ViewController.firstValue = 0.0
+            // ViewController.finalValue = 0.0
+            
+        }
+        
+        
+        else if ViewController.dotCounter == 1 && resultLabel.text != "undefined" {
+            ViewController.controller1 = 0
+            print("CASEEEeeeeeee")
+        }
+        
+        else if resultLabel.text == "undefined" {
+            //    ac()
+            resultLabel.text = (sender.titleLabel?.text)!
+            ViewController.firstValue = 0.0
+            if let numValue = resultLabel.text {
+                ViewController.finalValue = Double(numValue)!
+            }
+            print("num 3 else if")
+            
+            
+            ViewController.equalDeduplicator = true
+            //     ViewController.equalSetter = false
+            
+            
+            ViewController.firstValue = 0.0
+            ViewController.dotCounter = 0
+            ViewController.operationHandler = ""
+            ViewController.additionalOpHandler = ""
+            ViewController.controller1 = 0
+            ViewController.isNumLastPressed = true
+            
+            
+            
+            
+            
+            
         } else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
                 ViewController.opStatus = false
                 ViewController.equalDeduplicator = true
             }
-//            print("num else")
+            print("num 4 else")
         }
+        
         ViewController.isNumLastPressed = true
     }
     
@@ -85,6 +95,7 @@ class ViewController: UIViewController {
         if ViewController.equalDeduplicator == true{
             
             if let numValue = resultLabel.text{
+                print("VALUSSSS is \(numValue)")
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
@@ -92,15 +103,13 @@ class ViewController: UIViewController {
                 if ViewController.controller1 == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-                    print("operation if")
+                    
                 } else if ViewController.controller1 == 0 && (sender.titleLabel?.text == "*" || sender.titleLabel?.text == "/"){
                     contain(x: ViewController.firstValue, op:ViewController.operationHandler, y: 1.0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-                    print("operation else if")
                 } else {
                     contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: ViewController.firstValue)
                     ViewController.additionalOpHandler = ViewController.operationHandler
-                    print("operation else")
                 }
                 ViewController.opStatus = true
             }
@@ -129,7 +138,6 @@ class ViewController: UIViewController {
                 resultLabel.text = "undefined"
             }
             
-            
             //equal sign pressed resultLabel.text = 0
             else if numValue == "0"  && ViewController.equalDeduplicator == true{
                 resultLabel.text = resultLabel.text
@@ -148,7 +156,10 @@ class ViewController: UIViewController {
             else if ViewController.equalDeduplicator == true{
                 contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
                 ViewController.opStatus = true
-                print("else if 2 works equal button")
+                print("else if 2 works equal button,  ")
+                
+                
+                
             }
             ViewController.equalDeduplicator = false
             ViewController.equalSetter = false
@@ -196,16 +207,37 @@ class ViewController: UIViewController {
         ViewController.dotCounter += 1
         if let numValue = resultLabel.text{
             
-            //CASE3 number is laste entered, but number should be without .
-             if ViewController.isNumLastPressed == true && !numValue.contains("."){
-                resultLabel.text? = numValue.appending(".")
+           // CASE5
+            
+                     if  resultLabel.text != "undefined"{
+                         resultLabel.text? = "0".appending(".")
+                         print("hi")
+                    }
+            
+            
+            //     CASE4 same as CASE3      ViewController.equalSetter = false
+           else if !numValue.contains(".") && ViewController.equalSetter == true && ViewController.equalDeduplicator == false{
+                resultLabel.text? = "0".appending(".")
                 //risky line below
-                ViewController.equalDeduplicator = true
-                ViewController.equalSetter = true
-                print("dot button case 3")
-                
-                //CASE1 equal is last button pressed, user entering new value
-            }else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
+                //ViewController.equalDeduplicator = false
+                //ViewController.equalSetter = false
+                print("dot button case 4")
+            }
+            
+            
+            //CASE3 number is laste entered, but number should be without .
+            //            if ViewController.isNumLastPressed == true && !numValue.contains("."){
+            //                resultLabel.text? = numValue.appending(".")
+            //                //risky line below
+            //                ViewController.equalDeduplicator = true
+            //                ViewController.equalSetter = true
+            //                print("dot button case 3")
+            //            }
+            //
+            
+            
+            //CASE1 equal is last button pressed, user entering new value
+            else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalSetter = true
                 print("dot button case 1")

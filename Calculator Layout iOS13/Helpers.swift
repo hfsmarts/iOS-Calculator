@@ -13,14 +13,19 @@ extension ViewController {
     
     func contain(x: Double, op: String, y: Double){
         if (y == 0.0 || y == 0) && op == "/"{
-            ac()
-            resultLabel.text = "undefined"
-
-            //values that are assigned at the end of equal button
             
+            
+            print("put")
             ViewController.equalDeduplicator = false
             ViewController.equalSetter = false
+            ViewController.firstValue = 0.0
+            ViewController.dotCounter = 0
+            ViewController.operationHandler = ""
+            ViewController.additionalOpHandler = ""
+           // ViewController.controller1 = 0
             ViewController.isNumLastPressed = false
+            resultLabel.text = "undefined"
+      
             
         } else {
             let expression = NSExpression(format: "\(x)\(op)\(y)")
@@ -50,7 +55,6 @@ extension ViewController {
         //This variable is saying that number is last pressed
         ViewController.equalCounter = 0
         ViewController.isNumLastPressed = true
-        print("AC/DC")
     }
 }
 
@@ -58,6 +62,6 @@ extension ViewController {
 
     
     
-    
+
     
     
