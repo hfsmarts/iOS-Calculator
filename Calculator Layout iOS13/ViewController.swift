@@ -37,18 +37,35 @@ class ViewController: UIViewController {
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
             }
-            print("num 1 if")
+                print("num 1 if")
         }else if resultLabel.text != "0" && ViewController.opStatus == false && resultLabel.text != "undefined"{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
             print("num 2 else if, resultLabel.text = \(resultLabel.text!)")
             
-            //   ViewController.firstValue = 0.0
-            // ViewController.finalValue = 0.0
+            
+            
+            
+            
+            
+            
+            //FIRX FROM HERE
+            
+            
+            
+            
+            
+            
+            //added from num4else
+            if let numValue = sender.titleLabel?.text{
+                resultLabel.text = "0.\(numValue)"
+                ViewController.opStatus = false
+                ViewController.equalDeduplicator = true
+            }
+            
             
         }
-        
-        
-        else if ViewController.dotCounter == 1 && resultLabel.text != "undefined" {
+            
+            else if ViewController.dotCounter == 1 && resultLabel.text != "undefined" {
             ViewController.controller1 = 0
             print("CASEEEeeeeeee")
         }
@@ -219,9 +236,7 @@ class ViewController: UIViewController {
            else if !numValue.contains(".") && ViewController.equalSetter == true && ViewController.equalDeduplicator == false{
                 resultLabel.text? = "0".appending(".")
                 //risky line below
-                //ViewController.equalDeduplicator = false
-                //ViewController.equalSetter = false
-                print("dot button case 4")
+                               print("dot button case 4")
             }
             
             
