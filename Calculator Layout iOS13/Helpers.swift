@@ -6,6 +6,7 @@
 //  Copyright © 2022 The App Brewery. All rights reserved.
 //
 
+
 import UIKit
 import Foundation
 
@@ -18,6 +19,7 @@ extension ViewController {
             ViewController.equalSetter = false
             ViewController.firstValue = 0.0
             ViewController.dotCounter = 0
+            ViewController.numCounter = 0
             ViewController.operationHandler = ""
             ViewController.additionalOpHandler = ""
             // ViewController.controller1 = 0
@@ -31,7 +33,7 @@ extension ViewController {
             if isInteger {
                 resultLabel.text = String(Int(ViewController.finalValue))
             } else {
-                resultLabel.text = String(ViewController.finalValue)
+                resultLabel.text = String(Float(ViewController.finalValue))
             }
         }
     }
@@ -42,6 +44,7 @@ extension ViewController {
         ViewController.firstValue = 0.0
         ViewController.finalValue = 0.0
         ViewController.controller1 = 0
+        ViewController.numCounter = 0
         ViewController.opStatus = false
         ViewController.equalDeduplicator = true
         ViewController.equalSetter = true
@@ -50,15 +53,37 @@ extension ViewController {
         //Dot counter is new variable in order not to add multiple . on decimal number
         ViewController.dotCounter = 0
         //This variable is saying that number is last pressed
-        ViewController.equalCounter = 0
         ViewController.isNumLastPressed = true
+        ViewController.equalCounter = 0
     }
 }
 
 
+//ViewController.equalDeduplicator = true
+//            ViewController.firstValue = 0.0
+//            ViewController.firstValue = 1
+//            ViewController.dotCounter = 0
+//            ViewController.operationHandler = ""
+//            ViewController.additionalOpHandler = ""
+//            ViewController.controller1 = 0
 
 
 
 
+// num button case
 
 
+// }else if resultLabel.text == "0." && ViewController.opStatus == false && resultLabel.text != "undefined" && ViewController.isDotLastSend == true{
+//            resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
+//            ViewController.firstValue = 0.0
+//            if let numValue = resultLabel.text {
+//                ViewController.finalValue = Double(numValue)!
+//            }
+//            print("numOneButton else if 1")
+
+
+// num button case
+
+//} else if ViewController.dotCounter == 1 && resultLabel.text != "undefined" {
+//            ViewController.controller1 = 0
+//            print("numOneButton else if 3")
