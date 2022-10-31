@@ -1,11 +1,8 @@
 
 //  SceneDelegate.swift
-//  Calculator Layout iOS13
+//  Calculator iOS16
 //
-//  Created by Angela Yu on 01/07/2019.
-//  Developed by Harun Fazlic on 07/09/2022
-//  Copyright © 2019 The App Brewery. All rights reserved.
-//
+//  Created by Harun Fazlic on 07/09/2022.
 
 import UIKit
 
@@ -32,11 +29,11 @@ class ViewController: UIViewController {
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func numOneButton(_ sender: UIButton) {
-        //removed from line below && ViewController.opStatus == true
-        if ViewController.equalSetter == false && resultLabel.text != "0" && ViewController.isOperationLast == true {
+        if ViewController.equalSetter == false && resultLabel.text != "0" && ViewController.isOperationLast == true{
             resultLabel.text = (sender.titleLabel?.text)!
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
+                ViewController.isOperationLast = false /**FICA-52**/
             }
             print("numOneButton if")
             
@@ -105,7 +102,10 @@ class ViewController: UIViewController {
     @IBAction func equalButton(_ sender: UIButton) {
         if let numValue = resultLabel.text{
             
-            if numValue == "0" && (ViewController.operationHandler == "/" || ViewController.additionalOpHandler == "/") {
+            print("Value of numValue is \(numValue)")
+            print("Value of ViewController.FirstValue is \(ViewController.firstValue)")
+            
+            if numValue == "0" && ViewController.firstValue != 0.0 /*FICA-53*/ && (ViewController.operationHandler == "/" || ViewController.additionalOpHandler == "/") {
                 ac()
                 resultLabel.text = "undefined"
                 print("equal if")
