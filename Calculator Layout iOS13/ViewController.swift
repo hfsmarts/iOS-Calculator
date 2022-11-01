@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     public static var equalCounter = 0
     public static var numCounter = 0
     
+    
     @IBOutlet var resultLabel: UILabel!
     
     @IBAction func numOneButton(_ sender: UIButton) {
@@ -101,10 +102,7 @@ class ViewController: UIViewController {
     
     @IBAction func equalButton(_ sender: UIButton) {
         if let numValue = resultLabel.text{
-            
-            print("Value of numValue is \(numValue)")
-            print("Value of ViewController.FirstValue is \(ViewController.firstValue)")
-            
+                        
             if numValue == "0" && ViewController.firstValue != 0.0 /*FICA-53*/ && (ViewController.operationHandler == "/" || ViewController.additionalOpHandler == "/") {
                 ac()
                 resultLabel.text = "undefined"
@@ -123,7 +121,7 @@ class ViewController: UIViewController {
                     print("equal new")
                 }
                 
-            }else if ViewController.isReadyForEqual == true{
+            }else if ViewController.isReadyForEqual {
                 contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
                 ViewController.isOperationLast = true
                 print("equal else if 3")
@@ -156,9 +154,13 @@ class ViewController: UIViewController {
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
                         ViewController.firstValue = Double(resultLabel.text!)!
+                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54 other to delete*/
+                        print("if")
+                    }else if toDouble == 0{
                     } else {
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
                         ViewController.firstValue = Double(resultLabel.text!)!
+                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54 other to delete*/
                     }
                 }
             }
