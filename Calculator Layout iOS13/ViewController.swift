@@ -154,13 +154,13 @@ class ViewController: UIViewController {
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
                         ViewController.firstValue = Double(resultLabel.text!)!
-                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54 other to delete*/
+                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54*/
                         print("if")
-                    }else if toDouble == 0{
+                    }else if toDouble == 0{ /*FICA-55*/
                     } else {
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
                         ViewController.firstValue = Double(resultLabel.text!)!
-                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54 other to delete*/
+                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54*/
                     }
                 }
             }
