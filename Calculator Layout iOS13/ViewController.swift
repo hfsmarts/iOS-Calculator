@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     }
     public static var firstValue = 0.0
     public static var finalValue = 0.0
-    public static var numberTappedCounter = 0
     public static var isOperationLast = false
     public static var isReadyForEqual = true
     public static var equalSetter = true
@@ -21,11 +20,10 @@ class ViewController: UIViewController {
     public static var isDotLastSend = false
     public static var operationHandler = ""
     public static var additionalOpHandler = ""
-    //Dot counter is new variable in order not to add multiple . on decimal number
-    public static var dotCounter = 0
-    public static var equalCounter = 0
+    public static var numberTappedCounter = 0
+    public static var dotCounter = 0 /*counts dots in decimal number in order to have just one*/
+    public static var equalCounter = 0 /*after result is shown equal press will not show other results*/
     public static var numCounter = 0
-    
     
     @IBOutlet var resultLabel: UILabel!
     
@@ -36,12 +34,10 @@ class ViewController: UIViewController {
                 ViewController.finalValue = Double(numValue)!
                 ViewController.isOperationLast = false /**FICA-52**/
             }
-            print("numOneButton if")
             
         } else if resultLabel.text != "0"  && ViewController.isOperationLast == false && resultLabel.text != "undefined"{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
             ViewController.isReadyForEqual = true
-            print("numOneButton else if 2")
             
         } else if resultLabel.text == "undefined" {
             ac()
@@ -49,7 +45,6 @@ class ViewController: UIViewController {
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
             }
-            print("numOneButton else if 3")
             
         }  else {
             if let numValue = sender.titleLabel?.text{
@@ -57,11 +52,9 @@ class ViewController: UIViewController {
                 ViewController.isReadyForEqual = true
                 ViewController.isOperationLast = false
             }
-            print("numOneButton else")
         }
         ViewController.isNumLastPressed = true
         ViewController.isDotLastSend = false
-        print("numberTappedCounter is \(ViewController.numberTappedCounter)")
     }
     
     @IBAction func plusButton(_ sender: UIButton) {
@@ -106,28 +99,21 @@ class ViewController: UIViewController {
             if numValue == "0" && ViewController.firstValue != 0.0 /*FICA-53*/ && (ViewController.operationHandler == "/" || ViewController.additionalOpHandler == "/") {
                 ac()
                 resultLabel.text = "undefined"
-                print("equal if")
                 
             }else if numValue.last == "." && ViewController.isReadyForEqual == true{
                 resultLabel.text = numValue
                 ViewController.isReadyForEqual = true
-                //line below commented due to testing purposes
-                //ViewController.isOperationLast = true
-                print("equal else if 2")
                 
             }else if ViewController.numberTappedCounter == 0{
                 if let toDouble = Double(resultLabel.text!){
                     ViewController.finalValue = toDouble
-                    print("equal new")
                 }
                 
             }else if ViewController.isReadyForEqual {
                 contain(x: ViewController.finalValue, op:ViewController.additionalOpHandler, y: Double(numValue)!)
                 ViewController.isOperationLast = true
-                print("equal else if 3")
                 
             } else {
-                print("equal else")
                 resultLabel.text = resultLabel.text
             }
             
@@ -153,14 +139,11 @@ class ViewController: UIViewController {
                 if let toDouble = Double(numValue){
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
-                        ViewController.firstValue = Double(resultLabel.text!)!
-                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54*/
-                        print("if")
+                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
                     }else if toDouble == 0{ /*FICA-55*/
                     } else {
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
-                        ViewController.firstValue = Double(resultLabel.text!)!
-                        ViewController.finalValue = Double(resultLabel.text!)! /*FICA-54*/
+                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
                     }
                 }
             }
@@ -176,6 +159,10 @@ class ViewController: UIViewController {
                 resultLabel.text? = String(ViewController.finalValue)
             }
         }
+        
+        
+  
+        
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
@@ -186,38 +173,25 @@ class ViewController: UIViewController {
                 resultLabel.text? = "0".appending(".")
                 ViewController.numberTappedCounter = 0
                 ViewController.isDotLastSend = true
-                print("dotButton else if 1")
-                
                 
             } else if !numValue.contains(".") && ViewController.equalSetter == true && ViewController.isReadyForEqual == false{
                 resultLabel.text? = "0".appending(".")
-                print("dotButton else if 2")
                 
-                //ovdje
             } else if  resultLabel.text != "undefined" && !numValue.contains("."){
                 resultLabel.text? = numValue.appending(".")
-                print("dotButton if")
                 
             } else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
                 resultLabel.text? = "0".appending(".")
                 ViewController.equalSetter = true
-                print("dotButton else if 3")
-                
                 
             }else if ViewController.isReadyForEqual == false && ViewController.dotCounter == 1{
                 resultLabel.text? = "0".appending(".")
                 ViewController.isReadyForEqual = true
-                print("dotButton else if 4")
-                
                 
             }else if numValue == "0" {
                 resultLabel.text? = numValue.appending(".")
-                print("dotButton else if 5")
-                
                 
             }else{
-                print("dotButton else")
-                
             }
             ViewController.isOperationLast = false
             ViewController.operationHandler = ""
