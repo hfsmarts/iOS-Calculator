@@ -139,11 +139,18 @@ class ViewController: UIViewController {
                 if let toDouble = Double(numValue){
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
-                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
-                    }else if toDouble == 0{ /*FICA-55*/
+//                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
+                        print("+/- if \(toDouble)")
+                    }
+                    
+                    else if toDouble == 0  { /*FICA-55*/
+                    print("+/- else if \(toDouble)")
+                  
                     } else {
+                        resultLabel.text? = String(abs(toDouble))
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
-                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
+//                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
+                        print("+/- else \(toDouble)")
                     }
                 }
             }
