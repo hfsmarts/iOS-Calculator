@@ -64,7 +64,7 @@ class ViewController: UIViewController {
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
-                
+                                
                 if ViewController.numberTappedCounter == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
@@ -139,18 +139,12 @@ class ViewController: UIViewController {
                 if let toDouble = Double(numValue){
                     if toDouble > 0{
                         resultLabel.text? = "-\(resultLabel.text!)"
-//                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
-                        print("+/- if \(toDouble)")
+                        ViewController.isReadyForEqual = true /*FICA-54*/
                     }
-                    
                     else if toDouble == 0  { /*FICA-55*/
-                    print("+/- else if \(toDouble)")
-                  
                     } else {
-                        resultLabel.text? = String(abs(toDouble))
                         resultLabel.text? = String(resultLabel.text!.dropFirst())
-//                        ViewController.firstValue = Double(resultLabel.text!)! /**FICA-60**/
-                        print("+/- else \(toDouble)")
+                        ViewController.isReadyForEqual = true /*FICA-54*/
                     }
                 }
             }
@@ -166,10 +160,6 @@ class ViewController: UIViewController {
                 resultLabel.text? = String(ViewController.finalValue)
             }
         }
-        
-        
-  
-        
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
