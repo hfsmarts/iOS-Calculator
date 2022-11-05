@@ -1,8 +1,9 @@
 
-//  SceneDelegate.swift
+//  ViewController.swift
 //  Calculator iOS16
 //
 //  Created by Harun Fazlic on 07/09/2022.
+//
 
 import UIKit
 
@@ -152,14 +153,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func percentageButton(_ sender: UIButton) {
-        if Int(resultLabel.text ?? "0") != 0{
-            if let numValue = resultLabel.text{
-                if let toDouble = Double(numValue){
-                    ViewController.finalValue = toDouble / 100
-                }
-                resultLabel.text? = String(ViewController.finalValue)
+        if let numValue = Double(resultLabel.text!){
+            if numValue == 0.0{
+            } else {
+                let secondMultiplier = ViewController.firstValue/10
+                let firstMultipler = numValue/10
+                let result = firstMultipler*secondMultiplier
+                contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: result)
             }
         }
+// consider all buttons that will be tapped after result is displayed
     }
     
     @IBAction func dotButton(_ sender: UIButton) {

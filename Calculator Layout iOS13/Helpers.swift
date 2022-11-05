@@ -1,10 +1,10 @@
 //
 //  Helpers.swift
-//  Calculator Layout iOS13
+//  Calculator iOS16
 //
-//  Created by Harun Fazlic on 9. 9. 2022..
-//  Copyright © 2022 The App Brewery. All rights reserved.
+//  Created by Harun Fazlic on 07/09/2022.
 //
+
 import UIKit
 import Foundation
 
@@ -53,6 +53,4 @@ extension ViewController {
         ViewController.numCounter = 0
     }
 }
-
-
 
