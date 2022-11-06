@@ -35,24 +35,27 @@ class ViewController: UIViewController {
                 ViewController.finalValue = Double(numValue)!
                 ViewController.isOperationLast = false /**FICA-52**/
             }
-            
+            print("num if 1")
         } else if resultLabel.text != "0"  && ViewController.isOperationLast == false && resultLabel.text != "undefined"{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
             ViewController.isReadyForEqual = true
-            
+            print("num else if 1")
+
         } else if resultLabel.text == "undefined" {
             ac()
             resultLabel.text = (sender.titleLabel?.text)!
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
             }
-            
+            print("num if 2")
+
         }  else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
                 ViewController.isReadyForEqual = true
                 ViewController.isOperationLast = false
             }
+            print("num else")
         }
         ViewController.isNumLastPressed = true
         ViewController.isDotLastSend = false
@@ -156,7 +159,6 @@ class ViewController: UIViewController {
     @IBAction func percentageButton(_ sender: UIButton) { /*FICA-28*/
         if let numValue = Double(resultLabel.text!){
             if numValue == 0.0{
-                print("result label is 0")
             }else if ViewController.operationHandler == "" || ViewController.additionalOpHandler == ""{
                 resultLabel.text = String(numValue/100)
             } else if ViewController.operationHandler == "-" || ViewController.additionalOpHandler == "-" || ViewController.operationHandler == "+" || ViewController.additionalOpHandler == "+"{
@@ -173,7 +175,8 @@ class ViewController: UIViewController {
                 ViewController.isReadyForEqual = false /*FICA-67*/
             }
         }
-        // consider all buttons that will be tapped after result is displayed
+        ViewController.equalSetter = false /*FICA-65*/
+        ViewController.isOperationLast = true /*FICA-65*/
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
@@ -189,8 +192,8 @@ class ViewController: UIViewController {
                 resultLabel.text? = "0".appending(".")
                 
             } else if ViewController.isNumLastPressed == false && ViewController.isReadyForEqual == false && ViewController.equalSetter == false{ /*FICA-66*/
-                                resultLabel.text? = "0".appending(".")
-                                ViewController.equalSetter = true
+                resultLabel.text? = "0".appending(".")
+                ViewController.equalSetter = true
                 
             } else if  resultLabel.text != "undefined" && !numValue.contains("."){
                 resultLabel.text? = numValue.appending(".")
@@ -198,9 +201,9 @@ class ViewController: UIViewController {
             }else if ViewController.isReadyForEqual == false && ViewController.dotCounter == 1{
                 resultLabel.text? = "0".appending(".")
                 ViewController.isReadyForEqual = true
-
+                
             }else{
-
+                
             }
             ViewController.isOperationLast = false
             ViewController.isReadyForEqual = true
