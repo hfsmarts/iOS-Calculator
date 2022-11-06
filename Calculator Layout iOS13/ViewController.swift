@@ -170,6 +170,7 @@ class ViewController: UIViewController {
             }
         }
         // consider all buttons that will be tapped after result is displayed
+
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
@@ -184,21 +185,19 @@ class ViewController: UIViewController {
             } else if !numValue.contains(".") && ViewController.equalSetter == true && ViewController.isReadyForEqual == false{
                 resultLabel.text? = "0".appending(".")
                 
+            } else if ViewController.isNumLastPressed == false && ViewController.isReadyForEqual == false && ViewController.equalSetter == false{ /*FICA-66*/
+                                resultLabel.text? = "0".appending(".")
+                                ViewController.equalSetter = true
+                
             } else if  resultLabel.text != "undefined" && !numValue.contains("."){
                 resultLabel.text? = numValue.appending(".")
-                
-            } else  if ViewController.equalSetter == false && ViewController.dotCounter == 1{
-                resultLabel.text? = "0".appending(".")
-                ViewController.equalSetter = true
                 
             }else if ViewController.isReadyForEqual == false && ViewController.dotCounter == 1{
                 resultLabel.text? = "0".appending(".")
                 ViewController.isReadyForEqual = true
-                
-            }else if numValue == "0" {
-                resultLabel.text? = numValue.appending(".")
-                
+
             }else{
+
             }
             ViewController.isOperationLast = false
             ViewController.isReadyForEqual = true
