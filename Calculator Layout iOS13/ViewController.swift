@@ -164,13 +164,16 @@ class ViewController: UIViewController {
                 let secondMultiplier = ViewController.firstValue/10
                 let result = firstMultipler*secondMultiplier
                 contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: result)
+                ViewController.firstValue = Double(resultLabel.text!)! /*FICA-68*/
+                ViewController.isReadyForEqual = false /*FICA-67*/
             } else {
                 let multiplier = numValue/100
                 contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: multiplier)
+                ViewController.firstValue = Double(resultLabel.text!)! /*FICA-68*/
+                ViewController.isReadyForEqual = false /*FICA-67*/
             }
         }
         // consider all buttons that will be tapped after result is displayed
-        ViewController.isReadyForEqual = false /*FICA-67*/
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
