@@ -35,28 +35,25 @@ class ViewController: UIViewController {
                 ViewController.finalValue = Double(numValue)!
                 ViewController.isOperationLast = false /**FICA-52**/
             }
-            print("num if 1")
+            
         } else if resultLabel.text != "0"  && ViewController.isOperationLast == false && resultLabel.text != "undefined"{
             resultLabel.text = resultLabel.text! + (sender.titleLabel?.text)!
-            ViewController.isReadyForEqual = true
-            print("num else if 1")
-
+            
         } else if resultLabel.text == "undefined" {
             ac()
             resultLabel.text = (sender.titleLabel?.text)!
             if let numValue = resultLabel.text {
                 ViewController.finalValue = Double(numValue)!
             }
-            print("num if 2")
-
+            
         }  else {
             if let numValue = sender.titleLabel?.text{
                 resultLabel.text = numValue
-                ViewController.isReadyForEqual = true
                 ViewController.isOperationLast = false
             }
-            print("num else")
         }
+        
+        ViewController.isReadyForEqual = true /*FICA-59*/
         ViewController.isNumLastPressed = true
         ViewController.isDotLastSend = false
     }
@@ -154,7 +151,6 @@ class ViewController: UIViewController {
             }
         }
     }
-    
     
     @IBAction func percentageButton(_ sender: UIButton) { /*FICA-28*/
         if let numValue = Double(resultLabel.text!){
