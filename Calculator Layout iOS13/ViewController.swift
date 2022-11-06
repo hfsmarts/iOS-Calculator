@@ -65,7 +65,7 @@ class ViewController: UIViewController {
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)
                 ViewController.operationHandler = (sender.titleLabel?.text)!
-                                
+                
                 if ViewController.numberTappedCounter == 0 && (sender.titleLabel?.text == "+" || sender.titleLabel?.text == "-"){
                     contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: 0)
                     ViewController.additionalOpHandler = ViewController.operationHandler
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
     
     @IBAction func equalButton(_ sender: UIButton) {
         if let numValue = resultLabel.text{
-                        
+            
             if numValue == "0" && ViewController.firstValue != 0.0 /*FICA-53*/ && (ViewController.operationHandler == "/" || ViewController.additionalOpHandler == "/") {
                 ac()
                 resultLabel.text = "undefined"
@@ -152,17 +152,24 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func percentageButton(_ sender: UIButton) {
+    
+    @IBAction func percentageButton(_ sender: UIButton) { /*FICA-28*/
         if let numValue = Double(resultLabel.text!){
             if numValue == 0.0{
-            } else {
-                let secondMultiplier = ViewController.firstValue/10
+                print("result label is 0")
+            }else if ViewController.operationHandler == "" || ViewController.additionalOpHandler == ""{
+                resultLabel.text = String(numValue/100)
+            } else if ViewController.operationHandler == "-" || ViewController.additionalOpHandler == "-" || ViewController.operationHandler == "+" || ViewController.additionalOpHandler == "+"{
                 let firstMultipler = numValue/10
+                let secondMultiplier = ViewController.firstValue/10
                 let result = firstMultipler*secondMultiplier
                 contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: result)
+            } else {
+                let multiplier = numValue/100
+                contain(x: ViewController.firstValue, op: ViewController.operationHandler, y: multiplier)
             }
         }
-// consider all buttons that will be tapped after result is displayed
+        // consider all buttons that will be tapped after result is displayed
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
@@ -194,7 +201,6 @@ class ViewController: UIViewController {
             }else{
             }
             ViewController.isOperationLast = false
-            ViewController.operationHandler = ""
             ViewController.isReadyForEqual = true
         }
     }
