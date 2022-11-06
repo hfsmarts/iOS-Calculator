@@ -170,7 +170,7 @@ class ViewController: UIViewController {
             }
         }
         // consider all buttons that will be tapped after result is displayed
-
+        ViewController.isReadyForEqual = false /*FICA-67*/
     }
     
     @IBAction func dotButton(_ sender: UIButton) {
