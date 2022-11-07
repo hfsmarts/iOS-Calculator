@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var resultLabel: UILabel!
     
-    @IBAction func numOneButton(_ sender: UIButton) {
+    @IBAction func numButtons(_ sender: UIButton) {
         if ViewController.equalSetter == false && resultLabel.text != "0" && ViewController.isOperationLast == true{
             resultLabel.text = (sender.titleLabel?.text)!
             if let numValue = resultLabel.text {
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         ViewController.isDotLastSend = false
     }
     
-    @IBAction func plusButton(_ sender: UIButton) {
+    @IBAction func opButtons(_ sender: UIButton) {
         if ViewController.isReadyForEqual == true{
             
             if let numValue = resultLabel.text{
