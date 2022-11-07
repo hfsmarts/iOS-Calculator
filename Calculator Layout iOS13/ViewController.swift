@@ -52,7 +52,6 @@ class ViewController: UIViewController {
                 ViewController.isOperationLast = false
             }
         }
-        
         ViewController.isReadyForEqual = true /*FICA-59*/
         ViewController.isNumLastPressed = true
         ViewController.isDotLastSend = false
@@ -60,7 +59,6 @@ class ViewController: UIViewController {
     
     @IBAction func opButtons(_ sender: UIButton) {
         if ViewController.isReadyForEqual == true{
-            
             if let numValue = resultLabel.text{
                 ViewController.firstValue = Double(numValue)!
                 resultLabel.text = String(ViewController.firstValue)

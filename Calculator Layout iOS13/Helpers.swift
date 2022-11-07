@@ -19,7 +19,6 @@ extension ViewController {
             ViewController.numCounter = 0
             ViewController.operationHandler = ""
             ViewController.additionalOpHandler = ""
-            // ViewController.controller1 = 0
             ViewController.isNumLastPressed = false
             resultLabel.text = "undefined"
             
