@@ -18,7 +18,7 @@
 
 /* Begin PBXFileReference section */
 		59BB329A28CBAB200069AD22 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		AD0C513322CA22D500AADC4D /* Calculator Layout iOS13.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calculator Layout iOS13.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD0C513322CA22D500AADC4D /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD0C513622CA22D500AADC4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD0C513822CA22D500AADC4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD0C513A22CA22D500AADC4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		AD0C513422CA22D500AADC4D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD0C513322CA22D500AADC4D /* Calculator Layout iOS13.app */,
+				AD0C513322CA22D500AADC4D /* Calculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 			);
 			name = "Calculator Layout iOS13";
 			productName = "Calculator Layout iOS13";
-			productReference = AD0C513322CA22D500AADC4D /* Calculator Layout iOS13.app */;
+			productReference = AD0C513322CA22D500AADC4D /* Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -285,13 +285,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88JJ5XGUW;
 				INFOPLIST_FILE = "Calculator Layout iOS13/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Calculator;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ne radi";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.harunfazlic.Calculator-Layout-iOS14";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Calculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -304,13 +304,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C88JJ5XGUW;
 				INFOPLIST_FILE = "Calculator Layout iOS13/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Calculator;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ne radi";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.harunfazlic.Calculator-Layout-iOS14";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Calculator;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
